@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeForge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link rel="stylesheet" href="make.css"/>
+  <script defer src="make.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-logo">ResumeForge</div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showScreen('home')">🏠 Home</button>
+      <button class="nav-tab" onclick="showScreen('builder')">✏️ Builder</button>
+      <button class="nav-tab" onclick="showScreen('templates')">🎨 Templates</button>
+      <button class="nav-tab" onclick="showScreen('export')">📄 Export</button>
+    </div>
+  </nav>
+
+  <!-- ══ SCREEN: HOME ══ -->
+  <div class="screen active" id="home">
+    <section class="hero">
+      <div class="hero-text">
+        <div class="hero-label">
+          <span class="dot"></span>
+          Build your resume free
+        </div>
+        <h1 class="hero-title">
+          Build a resume that<br>
+          gets you <span class="gold">hired.</span>
+        </h1>
+        <p class="hero-desc">
+          Create a stunning professional resume in minutes.
+          Fill in your details, pick a template and
+          download as PDF — no design skills needed.
+        </p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showScreen('builder')">Create My Resume →</button>
+          <button class="btn-ghost" onclick="showScreen('templates')">View Templates</button>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">6+</div>
+            <div class="stat-label">Templates</div>
+          </div>
+          <div>
+            <div class="stat-num">Free</div>
+            <div class="stat-label">PDF Export</div>
+          </div>
+          <div>
+            <div class="stat-num">Auto</div>
+            <div class="stat-label">Save Draft</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-preview">
+        <div class="preview-card card-main">
+          <div class="mini-resume">
+            <div class="mini-header">
+              <div class="mini-name">James Osei</div>
+              <div class="mini-role">Software Developer</div>
+            </div>
+            <div class="mini-section-title">Experience</div>
+            <div class="mini-line"></div>
+            <div class="mini-line w70"></div>
+            <div class="mini-line w85"></div>
+            <div class="mini-section-title">Education</div>
+            <div class="mini-line w85"></div>
+            <div class="mini-line w50"></div>
+            <div class="mini-section-title">Skills</div>
+            <div class="mini-tags">
+              <div class="mini-tag"></div>
+              <div class="mini-tag"></div>
+              <div class="mini-tag"></div>
+              <div class="mini-tag"></div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-card card-float1">
+          <div class="dark-card">
+            <div class="dark-name">Sarah K.</div>
+            <div class="dark-line gold"></div>
+            <div class="dark-line gold w70"></div>
+            <div class="dark-line"></div>
+            <div class="dark-line w55"></div>
+            <div class="dark-line w70"></div>
+          </div>
+        </div>
+        <div class="preview-card card-float2">
+          <div class="light-card">
+            <div class="light-name">ALEX T.</div>
+            <div class="light-divider"></div>
+            <div class="light-line"></div>
+            <div class="light-line w70"></div>
+            <div class="light-line w55"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(232,201,126,0.1)">⚡</div>
+        <div class="feature-title">Live Preview</div>
+        <div class="feature-desc">See your resume update in real time as you type. No refreshing needed.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(91,156,246,0.1)">🎨</div>
+        <div class="feature-title">Multiple Templates</div>
+        <div class="feature-desc">Switch between Classic, Modern, Minimal and more. Your data stays intact.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(93,186,125,0.1)">📄</div>
+        <div class="feature-title">PDF Export</div>
+        <div class="feature-desc">Download a clean print-ready PDF that looks perfect on any device.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══ SCREEN: BUILDER ══ -->
+  <div class="screen" id="builder">
+
+    <!-- Editor Panel -->
+    <div class="editor-panel">
+      <div class="editor-tabs">
+        <div class="editor-tab active" onclick="switchTab(0)">👤 Personal</div>
+        <div class="editor-tab" onclick="switchTab(1)">💼 Experience</div>
+        <div class="editor-tab" onclick="switchTab(2)">🎓 Education</div>
+        <div class="editor-tab" onclick="switchTab(3)">🛠 Skills</div>
+      </div>
+      <div class="editor-body">
+
+        <!-- Tab 0: Personal -->
+        <div class="editor-section active">
+          <p class="section-heading">Personal Information</p>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">First Name</label>
+              <input class="field-input" id="firstName" type="text" placeholder="John"/>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Last Name</label>
+              <input class="field-input" id="lastName" type="text" placeholder="Doe"/>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Job Title</label>
+            <input class="field-input" id="jobTitle" type="text" placeholder="e.g. Software Developer"/>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Email</label>
+            <input class="field-input" id="email" type="email" placeholder="you@email.com"/>
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label class="field-label">Phone</label>
+              <input class="field-input" id="phone" type="text" placeholder="+1 000 000 0000"/>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Location</label>
+              <input class="field-input" id="location" type="text" placeholder="City, Country"/>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">LinkedIn</label>
+            <input class="field-input" id="linkedin" type="text" placeholder="linkedin.com/in/yourname"/>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Summary</label>
+            <textarea class="field-input" id="summary" rows="4" placeholder="Write a short professional summary..."></textarea>
+          </div>
+        </div>
+
+        <!-- Tab 1: Experience -->
+        <div class="editor-section">
+          <p class="section-heading">Work Experience</p>
+          <div id="experience-container"></div>
+          <button class="add-entry-btn" onclick="addExperience()">+ Add Experience</button>
+        </div>
+
+        <!-- Tab 2: Education -->
+        <div class="editor-section">
+          <p class="section-heading">Education</p>
+          <div id="education-container"></div>
+          <button class="add-entry-btn" onclick="addEducation()">+ Add Education</button>
+        </div>
+
+        <!-- Tab 3: Skills -->
+        <div class="editor-section">
+          <p class="section-heading">Skills</p>
+          <div id="skills-container" class="skills-tags"></div>
+          <input class="field-input" id="skill-input" style="margin-top:14px" type="text" placeholder="Type a skill and press Enter..."/>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Preview Panel -->
+    <div class="preview-panel">
+      <div class="preview-toolbar">
+        <div class="preview-toolbar-left">
+          <button class="tmpl-btn active" data-template="classic" onclick="switchTemplate('classic')">Classic</button>
+          <button class="tmpl-btn" data-template="modern" onclick="switchTemplate('modern')">Modern</button>
+          <button class="tmpl-btn" data-template="minimal" onclick="switchTemplate('minimal')">Minimal</button>
+        </div>
+        <button class="preview-dl" onclick="downloadPDF()">⬇ Download PDF</button>
+      </div>
+
+      <!-- Resume Paper -->
+      <div class="resume-paper" id="resume-paper">
+        <div class="rp-header">
+          <div class="rp-name" id="preview-name">Your Name</div>
+          <div class="rp-role" id="preview-role">Job Title</div>
+          <div class="rp-contact">
+            <span id="preview-email">email@email.com</span>
+            <span id="preview-phone">Phone</span>
+            <span id="preview-location">Location</span>
+          </div>
+        </div>
+        <div class="rp-body">
+          <div class="rp-sidebar">
+            <div class="rp-section">
+              <div class="rp-section-title">Skills</div>
+              <div id="preview-skills"></div>
+            </div>
+            <div class="rp-section">
+              <div class="rp-section-title">Education</div>
+              <div id="preview-education"></div>
+            </div>
+          </div>
+          <div class="rp-main">
+            <div class="rp-section">
+              <div class="rp-section-title">Summary</div>
+              <div class="rp-item-desc" id="preview-summary"></div>
+            </div>
+            <div class="rp-section">
+              <div class="rp-section-title">Experience</div>
+              <div id="preview-experience"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: TEMPLATES ══ -->
+  <div class="screen" id="templates">
+    <div class="templates-header">
+      <h2>Choose Your Template</h2>
+      <p>Pick a style that fits you. Switch anytime — your data stays.</p>
+    </div>
+    <div class="templates-grid">
+
+      <div class="template-card selected" data-template="classic" onclick="selectTemplate(this,'classic')">
+        <div class="selected-check">✓</div>
+        <div class="template-thumb t-classic-preview">
+          <div class="tc-name">Okeke Goodluck</div>
+          <div class="tc-role">Software Developer</div>
+          <div class="tc-divider"></div>
+          <div class="tc-line"></div>
+          <div class="tc-line w70"></div>
+          <div class="tc-line"></div>
+          <div class="tc-line w85"></div>
+        </div>
+        <div class="template-info">
+          <div class="template-name">Classic</div>
+          <div class="template-badge green">ATS Friendly</div>
+        </div>
+      </div>
+
+      <div class="template-card" data-template="modern" onclick="selectTemplate(this,'modern')">
+        <div class="selected-check">✓</div>
+        <div class="template-thumb t-modern-preview">
+          <div class="tm-side">
+            <div class="tm-dot"></div>
+            <div class="tm-name">Okeke Goodluck</div>
+            <div class="tm-line"></div>
+            <div class="tm-line w70"></div>
+          </div>
+          <div class="tm-main">
+            <div class="tm-line2"></div>
+            <div class="tm-line2 w70"></div>
+            <div class="tm-line2"></div>
+            <div class="tm-line2 w85"></div>
+          </div>
+        </div>
+        <div class="template-info">
+          <div class="template-name">Modern</div>
+          <div class="template-badge blue">Two Column</div>
+        </div>
+      </div>
+
+      <div class="template-card" data-template="minimal" onclick="selectTemplate(this,'minimal')">
+        <div class="selected-check">✓</div>
+        <div class="template-thumb t-minimal-preview">
+          <div class="tmin-name">Okeke Goodluck</div>
+          <div class="tmin-role">Software Developer</div>
+          <div class="tmin-divider"></div>
+          <div class="tmin-line"></div>
+          <div class="tmin-line w70"></div>
+          <div class="tmin-line"></div>
+          <div class="tmin-line w55"></div>
+        </div>
+        <div class="template-info">
+          <div class="template-name">Minimal</div>
+          <div class="template-badge gray">Clean</div>
+        </div>
+      </div>
+
+      <div class="template-card" data-template="bold" onclick="selectTemplate(this,'bold')">
+        <div class="selected-check">✓</div>
+        <div class="template-thumb t-bold-preview">
+          <div class="tb-header">
+            <div class="tb-name">Okeke Goodluck</div>
+            <div class="tb-role">SOFTWARE DEVELOPER</div>
+          </div>
+          <div class="tb-body">
+            <div class="tb-line"></div>
+            <div class="tb-line w70"></div>
+            <div class="tb-line"></div>
+          </div>
+        </div>
+        <div class="template-info">
+          <div class="template-name">Bold</div>
+          <div class="template-badge gold">Dark</div>
+        </div>
+      </div>
+
+      <div class="template-card" data-template="creative" onclick="selectTemplate(this,'creative')">
+        <div class="selected-check">✓</div>
+        <div class="template-thumb t-creative-preview">
+          <div class="tcr-name">Okeke Goodluck</div>
+          <div class="tcr-role">Software Developer</div>
+          <div class="tcr-card">
+            <div class="tcr-line"></div>
+            <div class="tcr-line w70"></div>
+          </div>
+          <div class="tcr-card">
+            <div class="tcr-line"></div>
+            <div class="tcr-line w55"></div>
+          </div>
+        </div>
+        <div class="template-info">
+          <div class="template-name">Creative</div>
+          <div class="template-badge purple">Vibrant</div>
+        </div>
+      </div>
+
+      <div class="template-card" data-template="executive" onclick="selectTemplate(this,'executive')">
+        <div class="selected-check">✓</div>
+        <div class="template-thumb t-exec-preview">
+          <div class="te-name">Okeke Goodluck</div>
+          <div class="te-role">SOFTWARE DEVELOPER</div>
+          <div class="te-accent"></div>
+          <div class="te-line"></div>
+          <div class="te-line w70"></div>
+          <div class="te-line"></div>
+        </div>
+        <div class="template-info">
+          <div class="template-name">Executive</div>
+          <div class="template-badge gold">Premium</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SCREEN: EXPORT ══ -->
+  <div class="screen" id="export">
+    <div class="export-header">
+      <h2>Preview & Export</h2>
+      <div class="export-actions">
+        <button class="btn-ghost" onclick="showScreen('builder')">← Back to Edit</button>
+        <button class="btn-primary" onclick="downloadPDF()">⬇ Download PDF</button>
+      </div>
+    </div>
+
+    <div class="export-resume" id="export-paper">
+      <div class="er-header">
+        <div class="er-name" id="export-name">Your Name</div>
+        <div class="er-role" id="export-role">Job Title</div>
+        <div class="er-contact">
+          <span id="export-email">email@email.com</span>
+          <span id="export-phone">Phone</span>
+          <span id="export-location">Location</span>
+        </div>
+      </div>
+      <div class="er-body">
+        <div class="er-sidebar">
+          <div class="er-section">
+            <div class="er-section-title">Skills</div>
+            <div id="export-skills"></div>
+          </div>
+          <div class="er-section">
+            <div class="er-section-title">Education</div>
+            <div id="export-education"></div>
+          </div>
+        </div>
+        <div class="er-main">
+          <div class="er-section">
+            <div class="er-section-title">Summary</div>
+            <div class="er-item-desc" id="export-summary"></div>
+          </div>
+          <div class="er-section">
+            <div class="er-section-title">Experience</div>
+            <div id="export-experience"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="export-options">
+      <div class="export-option" onclick="downloadPDF()">
+        <div class="export-option-icon" style="background:rgba(232,201,126,0.1)">📄</div>
+        <div>
+          <div class="export-option-title">Download PDF</div>
+          <div class="export-option-desc">Print-ready A4 format</div>
+        </div>
+      </div>
+      <div class="export-option" onclick="window.print()">
+        <div class="export-option-icon" style="background:rgba(91,156,246,0.1)">🖨</div>
+        <div>
+          <div class="export-option-title">Print Resume</div>
+          <div class="export-option-desc">Open browser print dialog</div>
+        </div>
+      </div>
+      <div class="export-option">
+        <div class="export-option-icon" style="background:rgba(93,186,125,0.1)">💾</div>
+        <div>
+          <div class="export-option-title">Auto Saved</div>
+          <div class="export-option-desc">Saved to your browser</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+</body>
+</html>
